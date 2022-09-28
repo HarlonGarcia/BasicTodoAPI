@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface TodoRepository extends CrudRepository<Todo, Integer> {
-    List<Todo> findByName(String name);
+    Todo findByName(String name);
 
     List<Todo> findAll();
     Todo findById(int id);

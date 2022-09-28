@@ -35,9 +35,9 @@ public class TodoController {
         return new ResponseEntity<List<Todo>>(todoService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Todo>> findByName(@RequestParam String name) {
-        return new ResponseEntity<List<Todo>>(todoService.findByName(name), HttpStatus.OK);
+    @GetMapping("/q")
+    public ResponseEntity<Todo> findByName(@RequestParam("name") String name) {
+        return new ResponseEntity<Todo>(todoService.findByName(name), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
