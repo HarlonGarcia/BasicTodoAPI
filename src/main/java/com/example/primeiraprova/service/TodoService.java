@@ -35,4 +35,27 @@ public class TodoService {
     public Todo findById(int id) {
         return todoRepository.findById(id);
     }
+
+    public void deleteById(int id) throws Exception {
+        Todo todo = todoRepository.findById(id);
+
+        if (todo != null) {
+            todoRepository.delete(todo);
+            return;
+        }
+
+        throw new Exception();
+    }
+
+    public Todo updateTodo(Todo todoWithChanges) {
+        Todo todo = todoRepository.findById(todoWithChanges.getId());
+
+        if (todo != null) {
+            todo.setName(todoWithChanges.getName());
+            todo.setComplete(todoWithChanges.isComplete());
+            todoRepository.save(todo);
+        }
+
+        return todo;
+    }
 }

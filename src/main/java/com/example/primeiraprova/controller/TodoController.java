@@ -50,5 +50,30 @@ public class TodoController {
         }
         return response;
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Todo> deleteById(@PathVariable int id) {
+        ResponseEntity<Todo> response;
+
+        try {
+            todoService.deleteById(id);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return response;
+    }
+
+    @PutMapping
+    public ResponseEntity<Todo> deleteById(@RequestBody Todo todo) {
+        ResponseEntity<Todo> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Todo todoUpdated = todoService.updateTodo(todo);
+
+        if (todoUpdated != null) {
+            response = new ResponseEntity<>(todo, HttpStatus.OK);
+        }
+        return response;
+    }
 }
 
